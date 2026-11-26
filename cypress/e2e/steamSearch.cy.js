@@ -64,13 +64,15 @@ describe("Steam Store - tests", () => {
 
       //Re-search & final verification using stored fixture data
       cy.readFile("cypress/fixtures/steamGames.json").then(({ firstGame, secondGame }) => {
+
+        
         //Re-search using the 2nd game name
         cy.searchGame(secondGame.name);
         SearchResultsPage.verifySearchResultsPageDisplayed();
         SearchResultsPage.verifySearchBoxContains(secondGame.name);
         verifyStoredGameMatches(secondGame);
 
-        
+
         //to verify both stored games appear in the result list with matching data.
         cy.searchGame(firstGame.name);
         SearchResultsPage.verifySearchResultsPageDisplayed();
