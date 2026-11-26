@@ -43,6 +43,28 @@ class SearchResultsPage {
     });
   }
 
+
+  //title diye khuje - game name match koray
+  resultRowByName(gameName) {
+    return this.resultRows.filter((_, row) => {
+      return cleanText(row.querySelector(".title")?.textContent) === gameName;
+    });
+  }
+  
+  verifyResultListContains(gameName) {
+    this.resultRowByName(gameName).should("have.length.greaterThan", 0);
+  }
+  //find position of that game in the list and er value gula pathay
+  getResultDataByName(gameName) {
+    return this.resultRows.then(($rows) => {
+      const index = [...$rows].findIndex(
+        (row) => cleanText(row.querySelector(".title")?.textContent) === gameName
+      );
+      expect(index, `"${gameName}" position in result list`).to.be.at.least(0);
+      return this.getResultData(index);
+    });
+  }
+
 }
 
 export default new SearchResultsPage();
