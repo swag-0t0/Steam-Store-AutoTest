@@ -1,9 +1,16 @@
 import HomePage from "../../Pages/HomePage.js";
 import SearchResultsPage from "../../Pages/SearchResultsPage.js";
 
+
+
+
 describe("Steam Store - tests", () => {
 
+
+
   it("Steamstore test", () => {
+
+    
     //Steam store e nagivate korbo
     HomePage.visit();
     HomePage.verifyHomePageLoaded();
@@ -45,7 +52,11 @@ describe("Steam Store - tests", () => {
       });
     });
 
-
+    //Re-search using the 2nd game name
+    cy.get("@storedGames").then(({ secondGame }) => {
+      cy.searchGame(secondGame.name);
+      SearchResultsPage.verifySearchResultsPageDisplayed();
+    });
 
 
 

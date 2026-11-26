@@ -23,3 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("searchGame", (gameName) => {
+  cy.get('input[name="term"]:visible').first().clear().type(`${gameName}{enter}`);
+
+  
+  cy.location("search").should((search) => {
+    expect(new URLSearchParams(search).get("term")).to.equal(gameName);
+  });
+});

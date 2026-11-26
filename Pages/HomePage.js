@@ -11,9 +11,9 @@ class HomePage {
     cy.location("pathname").should("eq", "/");
     this.searchInput.should("be.visible");
   }
-
+  //search and research ei method share kore
   searchFor(gameName) {
-    this.searchInput.clear().type(`${gameName}{enter}`);
+    cy.searchGame(gameName);
   }
 }
 
