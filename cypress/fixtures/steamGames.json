@@ -1,0 +1,20 @@
+{
+  "firstGame": {
+    "name": "Dota 2",
+    "platforms": [
+      "Windows",
+      "macOS",
+      "Linux"
+    ],
+    "releaseDate": "9 Jul, 2013",
+    "reviewSummary": "Very Positive",
+    "price": "Free"
+  },
+  "secondGame": {
+    "name": "The Dota 2 Official Soundtrack",
+    "platforms": [],
+    "releaseDate": "11 Feb, 2020",
+    "reviewSummary": "Very Positive",
+    "price": "$5.69"
+  }
+}

@@ -1,3 +1,5 @@
+import { cleanText, getPlatforms, getReviewSummary, getPrice } from "../cypress/support/helpers.js";
+
 class SearchResultsPage {
   get searchInput() {
     return cy.get('[name="displayterm"]')  
@@ -19,7 +21,7 @@ class SearchResultsPage {
   verifySearchBoxContains(expectedText) {
     this.searchInput.should("have.value", expectedText)
   }
-  //title e still dota 2 ache kina!
+  //first  result dota 2 kina!
   verifyResultNameEquals(index, expectedName) {
     this.resultRow(index)
       .find(".title")
@@ -27,6 +29,20 @@ class SearchResultsPage {
         expect($title.text().trim()).to.equal(expectedName)
       });
   }
+
+  //fet search resutl  data
+  getResultData(index) {
+    return this.resultRow(index).then(($row) => {
+      return {
+        name: cleanText($row.find(".title").text()),
+        platforms: getPlatforms($row),
+        releaseDate: cleanText($row.find(".search_released").text()),
+        reviewSummary: getReviewSummary($row),
+        price: getPrice($row),
+      };
+    });
+  }
+
 }
 
 export default new SearchResultsPage();
